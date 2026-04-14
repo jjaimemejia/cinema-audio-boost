@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -42,6 +43,20 @@ export default function RootLayout({
       lang="es"
       className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-G2ZT1W4ZR5"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-G2ZT1W4ZR5');
+          `}
+        </Script>
+      </head>
       <body className="min-h-full bg-[#040814] text-white">{children}</body>
     </html>
   );
